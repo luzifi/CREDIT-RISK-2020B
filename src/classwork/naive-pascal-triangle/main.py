@@ -6,11 +6,13 @@ from fintools.utils import timeit
 
 logger = get_logger(name=__name__)
 
+
 class Main:
 
     def get_element(self, i: int, j: int):
         return 1 if (j == 0 or j >= i) else \
             self.get_element(i=i-1, j=j-1) + self.get_element(i=i-1, j=j)
+
     def _naive_implementation(self, level: int, index: int = 0):
         if index < level:
             row = [
