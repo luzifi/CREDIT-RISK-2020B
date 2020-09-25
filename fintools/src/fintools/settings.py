@@ -1,5 +1,4 @@
 import logging
-import string
 import os
 from logging.config import dictConfig
 from typing import Dict, Optional
@@ -9,8 +8,8 @@ from typing import Dict, Optional
 
 # Logging configuration
 
-CROD_DEFAULT_LOGLEVEL = os.environ.get(
-    "CROD_DEFAULT_LOGLEVEL",
+FINTOOLS_DEFAULT_LOGLEVEL = os.environ.get(
+    "FINTOOLS_DEFAULT_LOGLEVEL",
     default="WARN"
 )
 
@@ -24,7 +23,7 @@ logging_config = {
     },
     "handlers": {
         "default": {
-            "level": CROD_DEFAULT_LOGLEVEL,
+            "level": FINTOOLS_DEFAULT_LOGLEVEL,
             "formatter": "standard",
             "class": "logging.StreamHandler",
         },
@@ -34,7 +33,7 @@ logging_config = {
             "handlers": [
                 "default"
             ],
-            "level": CROD_DEFAULT_LOGLEVEL,
+            "level": FINTOOLS_DEFAULT_LOGLEVEL,
             "propagate": True
         }
     }
