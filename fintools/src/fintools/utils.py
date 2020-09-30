@@ -12,3 +12,16 @@ def timeit(logger):
             return out
         return wrapper
     return decorator
+
+
+def method_caching(func):
+    simple_cache = {}
+
+    @functools.wraps(func)
+    def wrapper(self, **kwargs):
+        key = hash(frozenset(kwargs.items()))
+        if key in simple_cache:
+            return simple_cache[key]
+        simple_cache[key] = func(self, **kwargs)
+        return wrapper(self, **kwargs)
+    return wrapper
