@@ -18,10 +18,11 @@ def method_caching(func):
     simple_cache = {}
 
     @functools.wraps(func)
-    def wrapper(self, **kwargs):
-        key = hash(frozenset(kwargs.items()))
+    def wrapper(self, *args, **kwargs):
+        hashable_key = frozenset(args).union(frozenset(kwargs.items()))
+        key = hash(hashable_key)
         if key in simple_cache:
             return simple_cache[key]
-        simple_cache[key] = func(self, **kwargs)
-        return wrapper(self, **kwargs)
+        simple_cache[key] = func(self, *args, **kwargs)
+        return wrapper(self, *args, **kwargs)
     return wrapper
