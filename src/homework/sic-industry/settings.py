@@ -1,6 +1,5 @@
 import os
 
-
 INDUSTRY_SEARCH_DEFAULT_FILENAME = os.environ.get(
     "INDUSTRY_SEARCH_DEFAULT_FILENAME",
     default="./sic-industry/industries.json"
